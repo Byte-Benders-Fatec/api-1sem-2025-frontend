@@ -337,7 +337,7 @@ export default function UsersTable() {
                         <TableCell>{user.id}</TableCell>
                         <TableCell className="font-medium">{user.name}</TableCell>
                         <TableCell>{user.email}</TableCell>
-                        <TableCell>{user.team.name}</TableCell>
+                        <TableCell>{user.team?.name}</TableCell>
                         <TableCell>
                           <span className={`px-2 py-1 rounded-full text-xs font-semibold ${rolesColors[user.role]}`}>
                             {user.role}
@@ -412,16 +412,18 @@ export default function UsersTable() {
                                       required
                                     />
                                   </div>
-                                  <div>
-                                    <Label htmlFor="team">Time</Label>
-                                    <Input
-                                      disabled
-                                      id="team"
-                                      value={selectedUser.team.name}
-                                      onChange={(e) => setSelectedUser({...selectedUser, team: {id: 0, name: e.target.value}})}
-                                      required
-                                    />
-                                  </div>
+                                  {selectedUser.team && 
+                                    <div>
+                                      <Label htmlFor="team">Time</Label>
+                                      <Input
+                                        disabled
+                                        id="team"
+                                        value={selectedUser.team?.name}
+                                        onChange={(e) => setSelectedUser({...selectedUser, team: {id: 0, name: e.target.value}})}
+                                        required
+                                      />
+                                    </div>
+                                  }
                                   <div className='flex justify-end gap-1'>
                                     <DialogClose asChild>
                                       <Button type="button" variant="secondary" disabled={isLoading}>
@@ -510,32 +512,32 @@ export default function UsersTable() {
                   </SelectContent>
                 </Select>
               </div>
-              <div>
-                <Label htmlFor="team">Time</Label>
-                <Select 
-                  value={selectedUser.team.id.toString()}
-                  onValueChange={(teamId) => {
-                    const selectedTeam = teams.find(team => team.id === Number(teamId))
-                    if (selectedTeam) {
-                      setSelectedUser({
-                        ...selectedUser,
-                        team: { id: selectedTeam.id, name: selectedTeam.name }
-                      })
-                    }
-                  }}
-                >
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Escolha um time" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      {teams.map((team) => (
-                        <SelectItem key={team.id} value={team.id.toString()}>{team.name}</SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
+                <div>
+                  <Label htmlFor="team">Time</Label>
+                  <Select 
+                    value={selectedUser.team?.id.toString()}
+                    onValueChange={(teamId) => {
+                      const selectedTeam = teams.find(team => team.id === Number(teamId))
+                      if (selectedTeam) {
+                        setSelectedUser({
+                          ...selectedUser,
+                          team: { id: selectedTeam.id, name: selectedTeam.name }
+                        })
+                      }
+                    }}
+                  >
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Escolha um time" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        {teams.map((team) => (
+                          <SelectItem key={team.id} value={team.id.toString()}>{team.name}</SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
               <div className='flex justify-end gap-1'>
                 <DialogClose asChild>
                   <Button type="button" variant="secondary" disabled={isLoading}>
