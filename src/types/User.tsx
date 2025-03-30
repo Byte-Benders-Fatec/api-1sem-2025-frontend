@@ -3,6 +3,11 @@ interface Team {
     name: string;
 }
 
+interface Project{
+    id: number;
+    name: string;
+}
+
 const DefaultTeam: Team = {
     id: 0,
     name: ''
@@ -115,4 +120,4 @@ const DefaultAnswer: Answer = {
 }
 
 export {DefaultUser, DefaultTeam, DefaultForm, DefaultQuestion, DefaultAnswer};
-export type { User, Team, Form, Question, Answer };
+    export type { User, Team, Form, Question, Answer, Project };

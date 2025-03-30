@@ -5,6 +5,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import Login from "./routes/Login";
 import Users from './routes/Users';
 import TeamsPage from './pages/Teams';
+import ProjectsPage from './pages/Projects';
 import UsersTable from './components/UsersTable';
 
 const router = createBrowserRouter([
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
     path: "/equipes",
     element: <TeamsPage />,
   },
+  {
+    path: "/projetos",
+    element : <ProjectsPage />
+  },
+
   {
     path: "/login",
     element: <Login />,
