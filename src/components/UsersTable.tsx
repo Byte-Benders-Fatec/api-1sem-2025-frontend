@@ -337,7 +337,7 @@ export default function UsersTable() {
                         <TableCell>{user.id}</TableCell>
                         <TableCell className="font-medium">{user.name}</TableCell>
                         <TableCell>{user.email}</TableCell>
-                        <TableCell>{user.team.name}</TableCell>
+                        <TableCell>{user.team?.name}</TableCell>
                         <TableCell>
                           <span className={`px-2 py-1 rounded-full text-xs font-semibold ${rolesColors[user.role]}`}>
                             {user.role}
